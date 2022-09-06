@@ -291,7 +291,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             view_config_font_size_seek_bar.progressDrawable
         )
         view_config_font_size_seek_bar.thumb = thumbDrawable
-        view_config_ib_day_mode.setOnClickListener {
+        view_config_iv_label_font_big.setOnClickListener {
             config.fontSize = 60
             AppUtil.saveConfig(activity, config)
             EventBus.getDefault().post(ReloadDataEvent())
