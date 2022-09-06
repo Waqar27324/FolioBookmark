@@ -3,6 +3,7 @@ package com.folioreader.ui.view
 import android.animation.Animator
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
@@ -172,6 +173,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun configFonts() {
 
         val colorStateList = UiUtil.getColorList(
@@ -225,7 +227,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
      private fun toggleBlackTheme() {
-
+§
         val day = ContextCompat.getColor(context!!, R.color.white)
         val night = ContextCompat.getColor(context!!, R.color.night)
 
@@ -289,7 +291,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val thumbDrawable = ContextCompat.getDrawable(activity!!, R.drawable.seekbar_thumb)
         UiUtil.setColorIntToDrawable(config.currentThemeColor, thumbDrawable)
         UiUtil.setColorResToDrawable(
-            R.color.grey_color,
+            R.color.highlight_pink,
             view_config_font_size_seek_bar.progressDrawable
         )
         view_config_font_size_seek_bar.thumb = thumbDrawable
@@ -300,6 +302,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
 //        }
         view_config_font_size_seek_bar.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
+
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
             /*    if(progress > config.fontSize){
                     Log.e("SIZE IF", progress.toString())
@@ -318,13 +321,16 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
                     EventBus.getDefault().post(ReloadDataEvent())
                 }*/
                 config.fontSize = progress
-                AppUtil.saveConfig(activity, config)
-                EventBus.getDefault().post(ReloadDataEvent())
+//                AppUtil.saveConfig(activity, config)
+//                EventBus.getDefault().post(ReloadDataEvent())
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
 
-            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                AppUtil.saveConfig(activity, config)
+                EventBus.getDefault().post(ReloadDataEvent())
+            }
         })
     }
 
