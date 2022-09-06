@@ -293,6 +293,8 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
         view_config_font_size_seek_bar.thumb = thumbDrawable
         view_config_ib_day_mode.setOnClickListener {
             config.fontSize = 60
+            AppUtil.saveConfig(activity, config)
+            EventBus.getDefault().post(ReloadDataEvent())
         }
         view_config_font_size_seek_bar.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
