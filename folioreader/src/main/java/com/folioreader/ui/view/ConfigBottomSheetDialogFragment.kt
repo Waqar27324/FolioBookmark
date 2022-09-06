@@ -301,7 +301,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
         view_config_font_size_seek_bar.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                if(progress > config.fontSize){
+            /*    if(progress > config.fontSize){
                     Log.e("SIZE IF", progress.toString())
                     Log.e("FLYTTTER", "CHANG±ING")
                     config.fontSize = 100;
@@ -316,7 +316,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
                     config.fontSize = 0;
                     AppUtil.saveConfig(activity, config)
                     EventBus.getDefault().post(ReloadDataEvent())
-                }
+                }*/
 //                config.fontSize = progress
 //                AppUtil.saveConfig(activity, config)
 //                EventBus.getDefault().post(ReloadDataEvent())
