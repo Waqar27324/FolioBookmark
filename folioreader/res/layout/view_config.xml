@@ -83,9 +83,16 @@
 
     <SeekBar
         android:id="@+id/view_config_font_size_seek_bar"
+        style="@android:style/Widget.Material.SeekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clickable="false"
+        android:indeterminate="false"
         android:max="2"
+        android:progress="100"
+        android:progressDrawable="@drawable/blue_border_background"
+        android:progressTint="#FFBEBE"
+        android:thumb="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/view5"
         app:layout_constraintEnd_toStartOf="@+id/view_config_iv_label_font_big"
         app:layout_constraintStart_toEndOf="@+id/view_config_iv_label_font_small"
