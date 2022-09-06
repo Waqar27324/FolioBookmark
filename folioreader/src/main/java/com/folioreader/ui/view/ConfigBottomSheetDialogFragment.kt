@@ -6,6 +6,7 @@ import android.animation.ValueAnimator
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment
 import com.folioreader.Config
 import com.folioreader.R
 import com.folioreader.model.event.ReloadDataEvent
+import com.folioreader.model.sqlite.HighLightTable
 import com.folioreader.ui.activity.FolioActivity
 import com.folioreader.ui.activity.FolioActivityCallback
 import com.folioreader.ui.adapter.FontAdapter
@@ -300,12 +302,17 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if(progress > config.fontSize){
+                    Log.e("SIZE IF", progress.toString())
+                    Log.e("FLYTTTER", "CHANG±ING")
                     config.fontSize = 100;
 
                     AppUtil.saveConfig(activity, config)
                     EventBus.getDefault().post(ReloadDataEvent())
                 }
                 else{
+                    Log.e("SIZE ERLSE", progress.toString())
+
+                    Log.e("FLYTTTER", "else CHANG±ING")
                     config.fontSize = 0;
                     AppUtil.saveConfig(activity, config)
                     EventBus.getDefault().post(ReloadDataEvent())
