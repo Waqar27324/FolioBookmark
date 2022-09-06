@@ -291,17 +291,28 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
             view_config_font_size_seek_bar.progressDrawable
         )
         view_config_font_size_seek_bar.thumb = thumbDrawable
-        view_config_iv_label_font_big.setOnClickListener {
-            config.fontSize = 60
-            AppUtil.saveConfig(activity, config)
-            EventBus.getDefault().post(ReloadDataEvent())
-        }
+//        view_config_iv_label_font_big.setOnClickListener {
+//            config.fontSize = 60
+//            AppUtil.saveConfig(activity, config)
+//            EventBus.getDefault().post(ReloadDataEvent())
+//        }
         view_config_font_size_seek_bar.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                config.fontSize = progress
-                AppUtil.saveConfig(activity, config)
-                EventBus.getDefault().post(ReloadDataEvent())
+                if(progress > config.fontSize){
+                    config.fontSize = 100;
+
+                    AppUtil.saveConfig(activity, config)
+                    EventBus.getDefault().post(ReloadDataEvent())
+                }
+                else{
+                    config.fontSize = 0;
+                    AppUtil.saveConfig(activity, config)
+                    EventBus.getDefault().post(ReloadDataEvent())
+                }
+//                config.fontSize = progress
+//                AppUtil.saveConfig(activity, config)
+//                EventBus.getDefault().post(ReloadDataEvent())
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
