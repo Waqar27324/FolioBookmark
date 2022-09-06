@@ -317,9 +317,9 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
                     AppUtil.saveConfig(activity, config)
                     EventBus.getDefault().post(ReloadDataEvent())
                 }*/
-//                config.fontSize = progress
-//                AppUtil.saveConfig(activity, config)
-//                EventBus.getDefault().post(ReloadDataEvent())
+                config.fontSize = progress
+                AppUtil.saveConfig(activity, config)
+                EventBus.getDefault().post(ReloadDataEvent())
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
