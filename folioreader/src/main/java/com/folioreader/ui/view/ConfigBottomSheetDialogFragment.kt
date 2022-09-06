@@ -60,6 +60,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.e("fl;utter", "im from flutter onviewcreated");
         if (activity is FolioActivity)
             activityCallback = activity as FolioActivity
 
@@ -84,6 +85,7 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private fun initViews() {
         inflateView()
         configFonts()
+        Log.e("fl;utter", "im from flutter initviewssssssss");
         view_config_font_size_seek_bar.progress = config.fontSize
         configSeekBar()
         selectFont(config.font, false)
@@ -288,50 +290,58 @@ class ConfigBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun configSeekBar() {
-        val thumbDrawable = ContextCompat.getDrawable(activity!!, R.drawable.seekbar_thumb)
-        UiUtil.setColorIntToDrawable(config.currentThemeColor, thumbDrawable)
-        UiUtil.setColorResToDrawable(
-            R.color.highlight_pink,
-            view_config_font_size_seek_bar.progressDrawable
-        )
-        view_config_font_size_seek_bar.thumb = thumbDrawable
+
+        try{
+            val thumbDrawable = ContextCompat.getDrawable(activity!!, R.drawable.seekbar_thumb)
+            UiUtil.setColorIntToDrawable(config.currentThemeColor, thumbDrawable)
+            UiUtil.setColorResToDrawable(
+                R.color.highlight_pink,
+                view_config_font_size_seek_bar.progressDrawable
+            )
+            view_config_font_size_seek_bar.thumb = thumbDrawable
 //        view_config_iv_label_font_big.setOnClickListener {
 //            config.fontSize = 60
 //            AppUtil.saveConfig(activity, config)
 //            EventBus.getDefault().post(ReloadDataEvent())
 //        }
-        view_config_font_size_seek_bar.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
+            view_config_font_size_seek_bar.setOnSeekBarChangeListener(object :
+                SeekBar.OnSeekBarChangeListener {
 
-            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-            /*    if(progress > config.fontSize){
-                    Log.e("SIZE IF", progress.toString())
-                    Log.e("FLYTTTER", "CHANG±ING")
-                    config.fontSize = 100;
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                    /*    if(progress > config.fontSize){
+                            Log.e("SIZE IF", progress.toString())
+                            Log.e("FLYTTTER", "CHANG±ING")
+                            config.fontSize = 100;
 
-                    AppUtil.saveConfig(activity, config)
-                    EventBus.getDefault().post(ReloadDataEvent())
-                }
-                else{
-                    Log.e("SIZE ERLSE", progress.toString())
+                            AppUtil.saveConfig(activity, config)
+                            EventBus.getDefault().post(ReloadDataEvent())
+                        }
+                        else{
+                            Log.e("SIZE ERLSE", progress.toString())
 
-                    Log.e("FLYTTTER", "else CHANG±ING")
-                    config.fontSize = 0;
-                    AppUtil.saveConfig(activity, config)
-                    EventBus.getDefault().post(ReloadDataEvent())
-                }*/
-                config.fontSize = progress
+                            Log.e("FLYTTTER", "else CHANG±ING")
+                            config.fontSize = 0;
+                            AppUtil.saveConfig(activity, config)
+                            EventBus.getDefault().post(ReloadDataEvent())
+                        }*/
+                    config.fontSize = progress
 //                AppUtil.saveConfig(activity, config)
 //                EventBus.getDefault().post(ReloadDataEvent())
-            }
+                }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+                override fun onStartTrackingTouch(seekBar: SeekBar) {}
 
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-                AppUtil.saveConfig(activity, config)
-                EventBus.getDefault().post(ReloadDataEvent())
-            }
-        })
+                override fun onStopTrackingTouch(seekBar: SeekBar) {
+//                AppUtil.saveConfig(activity, config)
+//                EventBus.getDefault().post(ReloadDataEvent())
+                }
+            })
+        }
+        catch(e: Exception){
+            Log.e("Catched Exception", e.message);
+
+        }
+
     }
 
     private fun setToolBarColor() {
